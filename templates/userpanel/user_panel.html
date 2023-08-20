@@ -1,0 +1,72 @@
+{% extends 'userpanel/base.html' %}
+
+
+{% block script %}
+    <script>
+      function togglePasswordVisibility(inputId, iconId) {
+        const passwordInput = document.getElementById(inputId);
+        const passwordIcon = document.getElementById(iconId);
+
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+          passwordIcon.textContent = "👀";
+        } else {
+          passwordInput.type = "password";
+          passwordIcon.textContent = "️️👁️";
+        }
+      }
+
+
+    </script>
+{% endblock %}
+
+{% block massage%}
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+   <table class="site-list-table">
+      <thead>
+        <tr>
+          <th>نام سایت</th>
+          <th>نام کاربری</th>
+          <th>رمز عبور</th>
+          <th>عملیات</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for website in user_websites %}
+        <tr>
+          <td>{{ website.website_url }}</td>
+          <td>{{ website.site_username }}</td>
+          <td>
+           <input type="password" id="{{ website.website_url }}" value="{{ website.site_password }}" readonly>
+            <button><span id="toggle{{ website.website_url }}" onclick="togglePasswordVisibility('{{ website.website_url }}', 'toggle{{ website.website_url }}')">👁️</span></button>
+          </td>
+          <td class="operations">
+            <button>ویرایش</button>
+            <form method="POST" action="{% url 'delete_website' website.pk %}" class="delete-form">
+              {% csrf_token %}
+              <button type="submit" name="action" value="delete">حذف</button>
+            </form>
+             <form method="POST" action="{% url 'fetch_content' %}">
+              {% csrf_token %}
+              <input type="hidden" name="website_url" value="{{ website.website_url }}">
+              <input type="hidden" name="wordpress_username" value="{{ website.site_username }}">
+              <input type="hidden" name="wordpress_password" value="{{ website.site_password }}">
+              <button type="submit">دریافت محتوا</button>
+            </form>
+          </td>
+        </tr>
+         {% endfor %}
+        <!-- دیگر ردیف‌ها -->
+      </tbody>
+    </table>
+{% endblock %}

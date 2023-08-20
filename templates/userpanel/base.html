@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'userpanel/css/style.css' %}" />
+    <title>{% block title %}My Website{% endblock %}</title>
+    <!-- Add your CSS and JavaScript links here -->
+</head>
+  {% block script %} {% endblock %}
+  <style>
+
+  </style>
+<body>
+
+  <div class="dashboard-header">
+      <img src="{% static 'userpanel/img/logo.svg' %}" alt="website logo" class="site-logo" />
+      <div class="main-menu">
+        <a href="#">صفحه اصلی</a>
+        <a href="{% url 'add_website' %}">اضافه کردن وبسایت</a>
+       <a href="{% url 'add_phrase' %}">لینک سازی</a>
+        <a href="{% url 'user_panel' %}">لیست سایت‌ها</a>
+        <a href="#">درباره ما</a>
+      </div>
+      <div class="user-menu">
+        <div class="menu">
+          <button class="dropdown-button">سلام {{request.user.username}}</button>
+          <div class="dropdown-content">
+            <a href="{% url 'user_panel' %}">پروفایل</a>
+            <a href="#">تنظیمات</a>
+            <a href="#">خروج</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% block massage%}
+
+{% endblock %}
+
+
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+
+    <footer>
+        <!-- Add your footer content here -->
+    </footer>
+</body>
+</html>

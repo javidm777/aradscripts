@@ -1,0 +1,32 @@
+{% extends 'userpanel/base.html' %}
+
+{% block massage%}
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="login-form">
+    <h2 class="login-form-title">لینک سازی</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.phrase }}
+        </div>
+        <div class="form-group">
+            {{ form.link }}
+        </div>
+        <div class="form-group">
+            {{ form.website }}
+        </div>
+        <button type="submit">تایید</button>
+    </form>
+</div>
+
+
+{% endblock %}
