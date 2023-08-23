@@ -2,13 +2,15 @@ from django.contrib.messages import success
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from .models import Website
-from .forms import WebsiteForm, ReplacePhraseForm, SelectWebsiteForm
+from .forms import WebsiteForm, ReplacePhraseForm, SelectWebsiteForm, \
+    ContentWebsiteForm, ProcessDotsTextForm
 from django.contrib.auth.decorators import login_required
 from .scripts.main import get_wordpress_posts
-from .scripts.links_process import  main_script
+from .scripts.links_process import main_script
 from django.contrib import messages
 from .scripts.remove import run_text_process
 from .scripts.update import *
+from .scripts.process_dot import *
 
 
 def dashboard(request):
@@ -170,3 +172,36 @@ def remove_link(request):
         form = SelectWebsiteForm(user)
 
     return render(request, 'userpanel/remove.html', {'form': form})
+
+
+def create_content_website(request):
+    if request.method == 'POST':
+        form = ContentWebsiteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'userpanel/create_content_website.html',
+                          {'form': form, 'success_message':
+                              'Content created successfully!'})
+    else:
+        form = ContentWebsiteForm()
+    return render(request, 'userpanel/create_content_website.html',
+                  {'form': form})
+
+
+def process_dots_text(request):
+    user = request.user
+    if request.method == 'POST':
+        form = SelectWebsiteForm(user, request.POST)
+        if form.is_valid():
+            if SelectWebsiteForm:
+                selected_website = form.cleaned_data.get("website")
+                target_directory = f'output/website_content/{selected_website}'
+                target_directory = target_directory.replace('https://', '')
+                process_directory_dots_text(target_directory)
+
+                return JsonResponse({"success": True})
+            else:
+                return JsonResponse({"success": False})
+    else:
+        form = SelectWebsiteForm(user)
+    return render(request, 'userpanel/process_dots.html', {'form': form})

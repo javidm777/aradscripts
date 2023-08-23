@@ -28,3 +28,4 @@ def run_text_process(dir):
         process_text_file(txt_file_path, dir)
         print(f"Processed: {txt_file_path}")
 
+

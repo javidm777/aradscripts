@@ -1,5 +1,5 @@
 from django import forms
-from .models import Website, ReplacePhrase
+from .models import Website, ReplacePhrase, ContentWebsite
 from django.forms.widgets import TextInput
 
 
@@ -13,9 +13,12 @@ class WebsiteForm(forms.ModelForm):
             'site_password': 'رمز عبور سایت',
         }
         widgets = {
-            'website_url': forms.TextInput(attrs={'placeholder': 'آدرس وب‌سایت'}),
-            'site_username': forms.TextInput(attrs={'placeholder': 'نام کاربری سایت'}),
-            'site_password': forms.PasswordInput(attrs={'placeholder': 'رمز عبور سایت'}),
+            'website_url': forms.TextInput(
+                attrs={'placeholder': 'آدرس وب‌سایت'}),
+            'site_username': forms.TextInput(
+                attrs={'placeholder': 'نام کاربری سایت'}),
+            'site_password': forms.PasswordInput(
+                attrs={'placeholder': 'رمز عبور سایت'}),
         }
 
 
@@ -47,5 +50,22 @@ class SelectWebsiteForm(forms.Form):
         self.fields['website'].queryset = Website.objects.filter(user=user)
 
 
-class RemoveLinksForm(forms.Form):
-    website = forms.ModelChoiceField(queryset=Website.objects.none())
+class ContentWebsiteForm(forms.ModelForm):
+    class Meta:
+        model = ContentWebsite
+        fields = ['website', 'title', 'content', 'post_id', 'category', 'tags',
+                  'publish_date', 'slug']
+        widgets = {
+            'website': forms.TextInput(attrs={'class': 'form-group'}),
+            'title': forms.TextInput(attrs={'class': 'form-group'}),
+            'content': forms.Textarea(attrs={'class': 'form-group'}),
+            'post_id': forms.TextInput(attrs={'class': 'form-group'}),
+            'category': forms.Select(attrs={'class': 'form-group'}),
+            'tags': forms.TextInput(attrs={'class': 'form-group'}),
+            'publish_date': forms.DateTimeInput(attrs={'class': 'form-group'}),
+            'slug': forms.TextInput(attrs={'class': 'form-group'}),
+        }
+
+
+class ProcessDotsTextForm(forms.Form):
+    directory_path = forms.CharField(label='ادرس سایت', max_length=500)

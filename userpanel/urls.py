@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import create_content_website
 
 urlpatterns = [
     path('', views.dashboard, name='dashboard'),
@@ -11,7 +12,10 @@ urlpatterns = [
     path('fetch_content/', views.fetch_content, name='fetch_content'),
     path('process/', views.process, name='process'),
     path('update/', views.run_update_script_view, name='run_update_script_view'),
-    path('remove/', views.remove_link, name='remove_link')
-
+    path('remove/', views.remove_link, name='remove_link'),
+    path('create-content/', create_content_website,
+         name='create_content_website'),
+    path('process_dot/', views.process_dots_text,
+         name='process_dots_text'),
 
 ]

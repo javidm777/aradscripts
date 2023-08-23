@@ -29,4 +29,11 @@ class ContentWebsite(models.Model):
     title = models.CharField(max_length=500, blank=False, null=False)
     content = models.TextField()
     post_id = models.IntegerField(blank=False, null=False)
+    category = models.CharField(blank=True, null=True)
+    tags = models.CharField(blank=True, null=True)
+    publish_date = models.DateTimeField(blank=True, null=True)
+    slug = models.CharField(blank=True, null=True, max_length=500)
+    create_time = models.DateTimeField(auto_now_add=True)
+    modified_time = models.DateTimeField(auto_now=True)
+
 
