@@ -2,10 +2,14 @@
 
 
 {% block content %}
-<h2>فرم مسیر دایرکتوری</h2>
+<div class="login-form">
+<h2 class="login-form-title">فرم مسیر دایرکتوری</h2>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+         <div class="form-group">
+               {{ form.website }}
+         </div>
         <button type="submit">تایید</button>
     </form>
+</div>
 {% endblock %}
