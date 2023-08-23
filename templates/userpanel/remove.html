@@ -1,0 +1,21 @@
+{% extends 'userpanel/base.html' %}
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% block content %}
+    <div class="login-form">
+        <h2 class="login-form-title">حذف لینک‌های آراد</h2>
+        <form method="post" id="remove-link-form">
+            {% csrf_token %}
+            {{ form.website }}
+            <button type="submit">تایید</button>
+        </form>
+        <div id="result-message"></div>
+    </div>
+{% endblock %}

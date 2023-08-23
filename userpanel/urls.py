@@ -1,7 +1,6 @@
 from django.urls import path
 from . import views
 
-
 urlpatterns = [
     path('', views.dashboard, name='dashboard'),
     path('websites/', views.user_panel, name='user_panel'),
@@ -12,6 +11,7 @@ urlpatterns = [
     path('fetch_content/', views.fetch_content, name='fetch_content'),
     path('process/', views.process, name='process'),
     path('update/', views.run_update_script_view, name='run_update_script_view'),
+    path('remove/', views.remove_link, name='remove_link')
 
 
 ]

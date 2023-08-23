@@ -45,3 +45,7 @@ class SelectWebsiteForm(forms.Form):
     def __init__(self, user, *args, **kwargs):
         super(SelectWebsiteForm, self).__init__(*args, **kwargs)
         self.fields['website'].queryset = Website.objects.filter(user=user)
+
+
+class RemoveLinksForm(forms.Form):
+    website = forms.ModelChoiceField(queryset=Website.objects.none())

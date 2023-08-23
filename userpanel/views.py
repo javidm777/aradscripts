@@ -1,12 +1,13 @@
 from django.contrib.messages import success
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
-from .models import Website, ReplacePhrase
+from .models import Website
 from .forms import WebsiteForm, ReplacePhraseForm, SelectWebsiteForm
 from django.contrib.auth.decorators import login_required
 from .scripts.main import get_wordpress_posts
-from .scripts.links_process import process_file, main_script
+from .scripts.links_process import  main_script
 from django.contrib import messages
+from .scripts.remove import run_text_process
 from .scripts.update import *
 
 
@@ -141,8 +142,31 @@ def run_update_script_view(request):
             content_folder = content_folder.replace('https://', '')
 
             # اجرای اسکریپت از فایل جداگانه
-            run_wordpress_update_script(content_folder, wordpress_url, username, password)  # نام تابع تغییر کرده است
+            run_wordpress_update_script(content_folder, wordpress_url, username,
+                                        password)  # نام تابع تغییر کرده است
     else:
         form = SelectWebsiteForm(user)
 
     return render(request, 'userpanel/update-content.html', {'form': form})
+
+
+def remove_link(request):
+    user = request.user
+    if request.method == "POST":
+        form = SelectWebsiteForm(user, request.POST)
+        if form.is_valid():
+            selected_website = form.cleaned_data.get("website")
+            if selected_website:
+                directory_path = selected_website
+                directory_path = f'output/website_content/{directory_path}'
+                directory_path = directory_path.replace('https://', '')
+
+                run_text_process(directory_path)  # اجرای اسکریپت پردازش متن
+
+                return JsonResponse({"success": True})
+            else:
+                return JsonResponse({"success": False})
+    else:
+        form = SelectWebsiteForm(user)
+
+    return render(request, 'userpanel/remove.html', {'form': form})
