@@ -1,3 +1,5 @@
+import time
+
 from django.contrib.messages import success
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
@@ -228,6 +230,8 @@ def update_wordpress(request):
                             print(f"Post {post_id} updated and published successfully.")
                         else:
                             print(f"Failed to update and publish post {post_id}.")
+
+                    time.sleep(120)
     else:
         form = WebsiteForm()
     return render(request, 'userpanel/update_form.html', {'form': form})
