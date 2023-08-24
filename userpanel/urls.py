@@ -17,5 +17,6 @@ urlpatterns = [
          name='create_content_website'),
     path('process_dot/', views.process_dots_text,
          name='process_dots_text'),
+    path('update/', views.update_wordpress, name='update_wordpress'),
 
 ]

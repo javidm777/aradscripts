@@ -205,3 +205,29 @@ def process_dots_text(request):
     else:
         form = SelectWebsiteForm(user)
     return render(request, 'userpanel/process_dots.html', {'form': form})
+
+
+def update_wordpress(request):
+    if request.method == 'POST':
+        form = WebsiteForm(request.POST)
+        if form.is_valid():
+            instance = form.save()
+            wordpress_url = instance.wordpress_url
+            username = instance.username
+            password = instance.password
+            content_folder = instance.content_folder
+
+            for filename in os.listdir(content_folder):
+                if filename.endswith('.txt'):
+                    post_id = filename[:-4]
+                    with open(os.path.join(content_folder, filename), 'r',
+                              encoding='utf-8') as file:
+                        content = file.read()
+                        update_result = update_post_content(wordpress_url, username, password, post_id, content, publish=True)
+                        if update_result:
+                            print(f"Post {post_id} updated and published successfully.")
+                        else:
+                            print(f"Failed to update and publish post {post_id}.")
+    else:
+        form = WebsiteForm()
+    return render(request, 'userpanel/update_form.html', {'form': form})
