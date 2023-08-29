@@ -239,6 +239,10 @@ td.operations {
     flex-direction: column;
     }
 
+.website_contenct_table thead th {
+    text-align: center;
+}
+
 .main_login {
     display: flex;
     align-items: center;
@@ -280,5 +284,7 @@ input.login__submit {
     width: 50%;
     margin-bottom: 2rem;
 }
+
+
 
 
