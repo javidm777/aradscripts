@@ -254,6 +254,9 @@ td.operations {
     width: 50% !important;
     margin-bottom: 2rem;
 }
+.login {
+    width: 100%;
+    }
 
 .login__submit {
     background: #be6779;
