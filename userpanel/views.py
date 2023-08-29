@@ -61,6 +61,7 @@ def remove_links2(request):
         return HttpResponse ('Nashod')
 
 
+
 @login_required
 def delete_website(request, website_id):
     if request.method == 'POST':
