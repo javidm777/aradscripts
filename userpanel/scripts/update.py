@@ -16,6 +16,7 @@ def update_post_content(wordpress_url, username, password, post_id, content,
     return result
 
 
+
 def run_wordpress_update_script(content_folder, wordpress_url, username,
                                 password):
     for filename in os.listdir(content_folder):
