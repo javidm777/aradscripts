@@ -1,0 +1,15 @@
+{% extends 'userpanel/base.html' %}
+{% load static %}
+
+
+{% block content%}
+{{request.user.first_name}}
+<br>
+{{request.user.last_name}}
+<br>
+{{request.user.username}}
+<br>
+{{request.user.email}}
+<br>
+
+{% endblock%}

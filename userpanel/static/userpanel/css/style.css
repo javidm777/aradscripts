@@ -77,10 +77,54 @@ button.dropdown-button {
   color: #333;
 }
 
+.hero__sec {
+     display: flex;
+     background: #efeded;
+     height: 400px;
+     width: 90%;
+     margin: 2rem auto;
+     border-radius: 1rem;
+ }
+
+ .info__website {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-left: 1px solid darkgray;
+    gap: 1rem;
+ }
+
+ .content__info__website {
+     width: 64%;
+     padding: 0.3rem 1rem;
+     overflow: scroll;
+ }
+ h2.info__website-title {
+    font-size: 16px;
+}
+
+.website_contenct_table th{
+    text-align: right;
+
+}
+
+.website_contenct_table th{
+    text-align: right;
+
+}
+
+
+.website_contenct_table thead {
+    background: #be6779;
+    color: white;
+}
+
 
 /* Login form styles */
 .container {
   display: flex;
+  flex-direction: column;
 }
 
 .login-form {
@@ -99,6 +143,17 @@ display: flex;
 flex-direction: column;
 gap: 1rem;
 
+}
+
+a.site_info__link {
+    background: #be6779;
+    padding: 0.3rem 0.5rem;
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    border-radius: 0.3rem;
+    font-size: 13.3px;
 }
 
 .login-form-title {
@@ -131,6 +186,14 @@ display: flex;
 justify-content: center;
 }
 
+footer {
+    background: #333;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
 
 /* website list */
 
@@ -152,11 +215,11 @@ justify-content: center;
         text-align: center;
       }
 
-      button {
+button {
         border: none;
         cursor: pointer;
       }
-      table.site-list-table input {
+table.site-list-table input {
     width: 70%;
 }
 
@@ -166,24 +229,56 @@ td.operations {
     justify-content: center;
 }
 
-/* Footer */
+.form__login{
+    width: 25%;
+    background: #fff;
+    padding: 1rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    }
 
-footer {
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 20px;
+.main_login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    background: #333;
+}
+.logo__login__form {
+    width: 50% !important;
+    margin-bottom: 2rem;
 }
 
-footer a {
-  color: #fff;
-  text-decoration: none;
+.login__submit {
+    background: #be6779;
+    color: white;
+    font-size: 15px;
+    padding: 0.5rem;
+    cursor: pointer
 }
 
-select {
-    padding: 0.7rem;
-    border-radius: 0.3rem;
-    border: 1px solid #be6779;
-    font-family: 'iransans';
-    width: 100%;
+@media only screen and (max-width: 900px) {
+.form__login{
+width: 50%;
 }
+
+@media only screen and (max-width: 600px) {
+.form__login{
+width: 80%;
+}
+
+
+input.login__submit {
+    background: #be6779;
+    color: white;
+    font-size: 15px;
+}
+
+.logo__login__form {
+    width: 50%;
+    margin-bottom: 2rem;
+}
+
+

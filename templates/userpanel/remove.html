@@ -16,6 +16,11 @@
             {{ form.website }}
             <button type="submit">تایید</button>
         </form>
-        <div id="result-message"></div>
+        <div id="result-message">
+        {% if message %}
+            {{ message }}
+        {% endif %}
+    </div>
+
     </div>
 {% endblock %}

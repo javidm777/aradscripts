@@ -56,11 +56,11 @@ class ContentWebsiteForm(forms.ModelForm):
         fields = ['website', 'title', 'content', 'post_id', 'category', 'tags',
                   'publish_date', 'slug']
         widgets = {
-            'website': forms.TextInput(attrs={'class': 'form-group'}),
+            'website': forms.Select(attrs={'class': 'form-group'}),
             'title': forms.TextInput(attrs={'class': 'form-group'}),
             'content': forms.Textarea(attrs={'class': 'form-group'}),
             'post_id': forms.TextInput(attrs={'class': 'form-group'}),
-            'category': forms.Select(attrs={'class': 'form-group'}),
+            'category': forms.TextInput(attrs={'class': 'form-group'}),
             'tags': forms.TextInput(attrs={'class': 'form-group'}),
             'publish_date': forms.DateTimeInput(attrs={'class': 'form-group'}),
             'slug': forms.TextInput(attrs={'class': 'form-group'}),

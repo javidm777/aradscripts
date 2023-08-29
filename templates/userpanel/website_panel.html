@@ -1,0 +1,48 @@
+{% extends 'userpanel/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+   <div class="hero__sec">
+        <div class="info__website">
+          <h2 class="info__website-title">{{ website.website_url }}</h2>
+          <p class="site_info">تعداد محتوا: {{ contents.count }}</p>
+
+           <form method="POST" action="{% url 'fetch_content2' %}">
+              {% csrf_token %}
+              <input type="hidden" name="website_id" value="{{ website.id }}">
+              <input type="hidden" name="website_url" value="{{ website.website_url }}">
+              <input type="hidden" name="wordpress_username" value="{{ website.site_username }}">
+              <input type="hidden" name="wordpress_password" value="{{ website.site_password }}">
+              <button type="submit">دریافت محتوا</button>
+            </form>
+            <form action="{% url 'remove_link' %}" method="POST">
+             {% csrf_token %}
+              <input type="hidden" name="website_id" value="{{ website.id }}">
+              <input type="hidden" name="website_url" value="{{ website.website_url }}">
+              <input type="hidden" name="wordpress_username" value="{{ website.site_username }}">
+              <input type="hidden" name="wordpress_password" value="{{ website.site_password }}">
+                <button type="submit">حذف لینک آراد</button>
+            </form>
+
+        </div>
+        <div class="content__info__website">
+          <table style="width: 100%" class="website_contenct_table">
+            <thead>
+              <th>شناسه</th>
+              <th>عنوان</th>
+            </thead>
+
+          {% for content in contents %}
+            <tr>
+              <td>{{ content.id }}</td>
+              <td>{{ content.title }}</td>
+            </tr>
+          {% endfor %}
+          </table>
+        </div>
+      </div>
+
+
+{% endblock %}

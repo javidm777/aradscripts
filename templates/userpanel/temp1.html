@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>نمایش محتوا با Ajax</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>لیست محتوا</h1>
+    <ul id="content-list">
+        <!-- اطلاعات اینجا توسط Ajax پر می‌شوند -->
+    </ul>
+
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: '/get_content/',  // آدرس URL در Django
+                method: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    var contentList = response.content_data;
+                    var contentUl = $('#content-list');
+                    for (var i = 0; i < contentList.length; i++) {
+                        var content = contentList[i];
+                        var listItem = '<li><h2>' + content.title + '</h2><p>' + content.content + '</p></li>';
+                        contentUl.append(listItem);
+                    }
+                },
+                error: function(error) {
+                    console.log('خطا در دریافت اطلاعات:', error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

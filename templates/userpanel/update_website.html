@@ -1,0 +1,13 @@
+{% extends 'userpanel/base.html' %}
+{% load static %}
+
+
+{% block content%}
+
+{{website}}
+
+{% for content in contents %}
+{{ content.title }} <br>
+{% endfor %}
+
+{% endblock %}

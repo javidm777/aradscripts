@@ -56,13 +56,8 @@
               {% csrf_token %}
               <button type="submit" name="action" value="delete">حذف</button>
             </form>
-             <form method="POST" action="{% url 'fetch_content' %}">
-              {% csrf_token %}
-              <input type="hidden" name="website_url" value="{{ website.website_url }}">
-              <input type="hidden" name="wordpress_username" value="{{ website.site_username }}">
-              <input type="hidden" name="wordpress_password" value="{{ website.site_password }}">
-              <button type="submit">دریافت محتوا</button>
-            </form>
+
+              <a href="{% url 'website_panel'  website.pk %}" class="site_info__link">دریافت محتوا</a>
           </td>
         </tr>
          {% endfor %}
