@@ -77,6 +77,49 @@ button.dropdown-button {
   color: #333;
 }
 
+.hero__sec {
+     display: flex;
+     background: #efeded;
+     height: 400px;
+     width: 90%;
+     margin: 2rem auto;
+     border-radius: 1rem;
+ }
+
+ .info__website {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-left: 1px solid darkgray;
+    gap: 1rem;
+ }
+
+ .content__info__website {
+     width: 64%;
+     padding: 0.3rem 1rem;
+     overflow: scroll;
+ }
+ h2.info__website-title {
+    font-size: 16px;
+}
+
+.website_contenct_table th{
+    text-align: right;
+
+}
+
+.website_contenct_table th{
+    text-align: right;
+
+}
+
+
+.website_contenct_table thead {
+    background: #be6779;
+    color: white;
+}
+
 
 /* Login form styles */
 .container {
@@ -99,7 +142,18 @@ form {
 display: flex;
 flex-direction: column;
 gap: 1rem;
-width: 100%;
+
+}
+
+a.site_info__link {
+    background: #be6779;
+    padding: 0.3rem 0.5rem;
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    border-radius: 0.3rem;
+    font-size: 13.3px;
 }
 
 .login-form-title {
@@ -130,6 +184,14 @@ button {
 .form-group{
 display: flex;
 justify-content: center;
+}
+
+footer {
+    background: #333;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    color: white;
 }
 
 
@@ -218,12 +280,5 @@ input.login__submit {
     width: 50%;
     margin-bottom: 2rem;
 }
-/* Footer */
 
-footer {
-    background: #333;
-    padding: 1rem;
-    display: flex;
-    justify-content: center;
-    color: white;
-}
+
